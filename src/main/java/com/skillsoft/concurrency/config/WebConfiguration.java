@@ -1,4 +1,4 @@
-package org.codejudge.sb.config;
+package com.skillsoft.concurrency.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
