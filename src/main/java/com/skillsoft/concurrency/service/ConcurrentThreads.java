@@ -22,5 +22,6 @@ public class ConcurrentThreads implements Runnable {
 
         //t1.start() won't work
         //t1.run() will work
+        //Thread t1 = new Thread(new ConcurrentThreads(), "1st thread"); Naming the thread
     }
 }
