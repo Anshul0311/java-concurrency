@@ -7,7 +7,7 @@ public class IsAliveThreadDemo {
         public void run() {
             for (int i = 1; i < 5; i++) {
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(3000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -23,8 +23,11 @@ public class IsAliveThreadDemo {
             walkThread.start();
             System.out.println("isAlive of the walk thread after start.. " + walkThread.isAlive());
 
-            walkThread.join();
+            walkThread.join(5000);
             System.out.println("isAlive of the walk thread after join.. " + walkThread.isAlive());
+
+            Thread.sleep(10000);
+            System.out.println("isAlive of the walk thread at the end.. " + walkThread.isAlive());
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
