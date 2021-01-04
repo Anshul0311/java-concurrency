@@ -1,4 +1,4 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -9,11 +9,11 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Arrays;
 
-public class WebPageDonwloaderMultiThreaded implements Runnable {
+public class WebPageDownloaderSingleThreaded implements Runnable {
 
     private String[] urlsList;
 
-    public WebPageDonwloaderMultiThreaded(String[] urlsList) {
+    public WebPageDownloaderSingleThreaded(String[] urlsList) {
         this.urlsList = urlsList;
     }
 
@@ -51,16 +51,11 @@ public class WebPageDonwloaderMultiThreaded implements Runnable {
                 "https://www.skillsoft.com/news",
                 "https://www.skillsoft.com/case-studies?industry=sports"};
 
-        Thread downloaderOne = new Thread(new WebPageDonwloaderMultiThreaded(Arrays.copyOfRange(urls, 0, 6)));
-        Thread downloaderTwo = new Thread(new WebPageDonwloaderMultiThreaded(Arrays.copyOfRange(urls, 6, urls.length)));
-
+        Thread downloaderOne = new Thread(new WebPageDownloaderSingleThreaded(Arrays.copyOfRange(urls, 0, urls.length)));
         try {
             Instant startTime = Instant.now();
             downloaderOne.start();
-            downloaderTwo.start();
-
             downloaderOne.join();
-            downloaderTwo.start();
             Instant endTime = Instant.now();
             System.out.println("Total time taken: " + Duration.between(startTime,endTime).getSeconds() + "s");
         }

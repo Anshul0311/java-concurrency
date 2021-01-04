@@ -1,8 +1,7 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
-public class ThreadLifeCycle {
+public class ThreadPriority {
 
-    //There will be a single instance of Walk class for the entire thread lifecycle, since its a static class
     public static class Walk implements Runnable {
         @Override
         public void run() {
@@ -12,7 +11,7 @@ public class ThreadLifeCycle {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("I am walking..");
+                System.out.println("I am walking.. ");
             }
         }
     }
@@ -31,16 +30,20 @@ public class ThreadLifeCycle {
         }
     }
 
-    public void performTasks() {
-        Thread walkThread = new Thread(new Walk());
-        Thread chewThread = new Thread(new ChewGum());
-        try {
-            walkThread.start();
-            walkThread.join();
-            chewThread.start();
-        } catch (InterruptedException ex) {
-            ex.printStackTrace();
-        }
+    public void threadPriorityDemo() {
+        Thread walkThread = new Thread(new ThreadMethods.Walk());
+        Thread chewThread = new Thread(new ThreadMethods.ChewGum());
 
+        walkThread.setPriority(9);
+        chewThread.setPriority(2);
+
+        System.out.println("\nwalk thread's priority : " + walkThread.getPriority());
+        System.out.println("chew thread's priority : " + chewThread.getPriority());
+        System.out.println("main thread's priority : " + Thread.currentThread().getPriority());
+
+        walkThread.start();
+        chewThread.start();
+
+        System.out.println("\n\n");
     }
 }

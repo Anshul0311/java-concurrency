@@ -1,16 +1,14 @@
 package com.skillsoft.concurrency;
 
+import com.skillsoft.concurrency.service.threadmethods.IsAliveThreadDemo;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Slf4j
-@SpringBootApplication
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		log.info("Starting Application...");
-		SpringApplication.run(Application.class, args);
+		new IsAliveThreadDemo().isAliveDemo();
 	}
 
 }

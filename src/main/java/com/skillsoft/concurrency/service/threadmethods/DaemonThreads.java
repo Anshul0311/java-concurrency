@@ -1,6 +1,6 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
-public class ThreadPriority {
+public class DaemonThreads {
 
     public static class Walk implements Runnable {
         @Override
@@ -30,20 +30,24 @@ public class ThreadPriority {
         }
     }
 
-    public void threadPriorityDemo() {
+    public void daemonDemo() {
         Thread walkThread = new Thread(new ThreadMethods.Walk());
         Thread chewThread = new Thread(new ThreadMethods.ChewGum());
 
-        walkThread.setPriority(9);
-        chewThread.setPriority(2);
+        chewThread.setDaemon(true);
 
-        System.out.println("\nwalk thread's priority : " + walkThread.getPriority());
-        System.out.println("chew thread's priority : " + chewThread.getPriority());
-        System.out.println("main thread's priority : " + Thread.currentThread().getPriority());
-
-        walkThread.start();
-        chewThread.start();
+        System.out.println("\nwalk thread's daemon status : " + walkThread.isDaemon());
+        System.out.println("chew thread's daemon status : " + chewThread.isDaemon());
+        System.out.println("main thread's daemon status : " + Thread.currentThread().isDaemon());
 
         System.out.println("\n\n");
+
+        try {
+            walkThread.start();
+            walkThread.join(5000);
+            chewThread.start();
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
     }
 }

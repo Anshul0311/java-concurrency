@@ -1,7 +1,8 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
-public class DaemonThreads {
+public class ThreadLifeCycle {
 
+    //There will be a single instance of Walk class for the entire thread lifecycle, since its a static class
     public static class Walk implements Runnable {
         @Override
         public void run() {
@@ -11,7 +12,7 @@ public class DaemonThreads {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("I am walking.. ");
+                System.out.println("I am walking..");
             }
         }
     }
@@ -30,24 +31,16 @@ public class DaemonThreads {
         }
     }
 
-    public void daemonDemo() {
-        Thread walkThread = new Thread(new ThreadMethods.Walk());
-        Thread chewThread = new Thread(new ThreadMethods.ChewGum());
-
-        chewThread.setDaemon(true);
-
-        System.out.println("\nwalk thread's daemon status : " + walkThread.isDaemon());
-        System.out.println("chew thread's daemon status : " + chewThread.isDaemon());
-        System.out.println("main thread's daemon status : " + Thread.currentThread().isDaemon());
-
-        System.out.println("\n\n");
-
+    public void performTasks() {
+        Thread walkThread = new Thread(new Walk());
+        Thread chewThread = new Thread(new ChewGum());
         try {
             walkThread.start();
-            walkThread.join(5000);
+            walkThread.join();
             chewThread.start();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+
     }
 }

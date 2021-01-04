@@ -1,4 +1,4 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
 public class ThreadGroupDemo {
     public static class Walk implements Runnable {

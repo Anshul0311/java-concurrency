@@ -1,4 +1,4 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
 public class ThreadMethods {
 

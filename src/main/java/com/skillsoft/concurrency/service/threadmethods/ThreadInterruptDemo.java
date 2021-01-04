@@ -1,4 +1,4 @@
-package com.skillsoft.concurrency.service;
+package com.skillsoft.concurrency.service.threadmethods;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
