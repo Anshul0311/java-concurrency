@@ -23,7 +23,7 @@ public class RaceCondition implements Runnable {
     }
 
     //Race Condition
-    public void synchronisationDemo() {
+    public void raceConditionDemo() {
         //Each of the thread will perform 10 increments of myNum variable
         Thread threadOne = new Thread(new RaceCondition());
         Thread threadTwo = new Thread(new RaceCondition());
