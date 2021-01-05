@@ -15,6 +15,7 @@ public class SynchronisationExample2 {
         try {
             threadOne.start();
             threadTwo.start();
+            threadThree.start();
 
             Thread.sleep(1000);
         } catch (InterruptedException ex) {
