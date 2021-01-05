@@ -5,6 +5,11 @@ public class SecondTask implements Runnable {
     ResourceOne resourceOne;
     ResourceTwo resourceTwo;
 
+    public SecondTask(ResourceOne resourceOne, ResourceTwo resourceTwo) {
+        this.resourceOne = resourceOne;
+        this.resourceTwo = resourceTwo;
+    }
+
     @Override
     public void run() {
         try {
