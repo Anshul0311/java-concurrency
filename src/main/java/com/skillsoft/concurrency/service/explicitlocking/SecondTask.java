@@ -13,19 +13,19 @@ public class SecondTask implements Runnable {
     @Override
     public void run() {
         try {
-            resourceOne.r1Lock.lock();
-            System.out.println("Lock acquired on ResourceOne by " + Thread.currentThread().getName());
-            resourceOne.varOne++;
-            Thread.sleep(1000);
-            resourceOne.r1Lock.unlock();
-            System.out.println("Lock released on ResourceOne by " + Thread.currentThread().getName());
-
             resourceTwo.r2Lock.lock();
             System.out.println("Lock acquired on ResourceTwo by " + Thread.currentThread().getName());
-            resourceTwo.varTwo--;
+            resourceTwo.varTwo++;
             Thread.sleep(1000);
             resourceTwo.r2Lock.unlock();
             System.out.println("Lock released on ResourceTwo by " + Thread.currentThread().getName());
+
+            resourceOne.r1Lock.lock();
+            System.out.println("Lock acquired on ResourceOne by " + Thread.currentThread().getName());
+            resourceOne.varOne--;
+            Thread.sleep(1000);
+            resourceOne.r1Lock.unlock();
+            System.out.println("Lock released on ResourceOne by " + Thread.currentThread().getName());
         } catch(InterruptedException ex) {
             ex.printStackTrace();
         }
