@@ -13,6 +13,7 @@ public class SecondTask implements Runnable {
     @Override
     public void run() {
         try {
+            //We can avoid the deadlock , if it would have acquired resource-1, then atleast one of the thread would have acquired resource-1
             synchronized (resourceTwo) {
                 System.out.println("Lock acquired on ResourceTwo by " + Thread.currentThread().getName());
                 resourceTwo.varTwo++;
